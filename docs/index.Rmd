@@ -1,45 +1,56 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: Yetong's A4 Report Title
+author: Yetong Gu
+date: '2022-11-21'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
-source("../source/a4-helpers.R")
-source("../source/analysis.R")
-```
+
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+This is a set of data that compares the number of incarceration of different race people in the United States.We will look at the data and make conclusion on what we can do to fix the  bias problem in the future.
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
 
 ## Introduction 
-[TODO]
+In America,people in prison are disproportionately Black and Latinx, they are almost 32 percent of the US populations. It is considered normal that “Mass incarceration is a contemporary, legally permissible extension of slavery.” Corporations benefit from it because they have a great interest in commercial interests in the prison system. Moreover, the language used to refer to people in jail as inmates is dehumanizing, people with color is less likely to receive mental health problem diagnosed and treated. We need to make our policy as acurrate as possible and with less bias. It is possible that numbers are being misinterpreted or the results of the study being lost. We need to place numbers in context and naming racism or sexism when it is time to do so. 
 
 ## Data Summary 
-[TODO]
 
-[TODO ... other sections ... See Canvas for details]
+We can see that white prison average is alomost 8 people less than black average. However,compare to the total populations of black and whites, black's persentage for people who get in jail is way more than whites.
+
+
+section3:
+```{r echo=FALSE}
+plot_jail_pop_for_us()
+```
+
+
+
+The chart shows the increase of Jail Population in U.S. form 1970-2018, the number increased drastically from the year 1990. From the year 1990 to 2020 the number of people in jail increased almost 20000.
+
+section4:
+```{r echo=FALSE}
+state_vector <- c("AL", "CA","AR")
+plot_jail_pop_by_states(states_vector)
+```
+
+This chart shows the growth of prison population in jail by year. We can see each states' yearly growth of prison population is increasing in a fast rate. Compare to AL and AR, CA has less people in jail and increasing in a comparabliy slower rate.
+
+
+section5:
+```{r echo=FALSE}
+plot_female_pop_by_state()
+```
+ 
+ 
+ This chart shows the Female Incarcerated Population by State is increasing from 1970 to 2018 in these five states.  CA is the states that has the fastest increasing rate at the beginning until the year 2000.
+ 
+ 
+section6:
+
+
+
+
 
 _All the very best with your work!_
 
