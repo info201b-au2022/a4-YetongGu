@@ -31,7 +31,7 @@ The chart shows the increase of Jail Population in U.S. form 1970-2018, the numb
 section4:
 ```{r echo=FALSE}
 state_vector <- c("AL", "CA","AR")
-plot_jail_pop_by_states(states_vector)
+plot_jail_pop_for_states(state_vector)
 ```
 
 This chart shows the growth of prison population in jail by year. We can see each states' yearly growth of prison population is increasing in a fast rate. Compare to AL and AR, CA has less people in jail and increasing in a comparabliy slower rate.
