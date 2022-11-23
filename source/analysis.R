@@ -46,12 +46,13 @@ get_year_jail_pop <- function() {
 plot_jail_pop_for_us <- function() {
   # TODO: Implement this function
   total_jail_pop_chart <- get_year_jail_pop() %>%
-    ggplot(total_jail_pop_year, mapping = aes(x = year, y = total_jail_pop)) +
+   
+     ggplot(total_jail_pop_year, mapping = aes(x = year, y = total_jail_pop)) +
     geom_col() +
     labs(
-      title = "Increase of Jail Population in U.S. (1970-2018)",
+      title = "Increase of Jail Population in U.S. from (1970-2018)",
       x = "Year",
-      y = "Total Jail Population"
+      y = "Total Population Jail"
     )
   return(total_jail_pop_chart)   
 }
@@ -108,15 +109,15 @@ get_female_pop_by_state <- function() {
 }
 
 plot_female_pop_by_state <- function() {
-  chart3 <- ggplot(data = get_female_pop_by_state(), 
+  chart<- ggplot(data = get_female_pop_by_state(), 
                    aes(x = year, y = female_pop, group = state)) +
     geom_line(aes(color = state)) +
-    xlim(1970, 2018) +
+    xlim(2000, 2018) +
     xlab("Year") +
     ylab("Female Incarcerated Population") +
-    ggtitle("Female Incarcerated Population by State (1970-2018)")
+    ggtitle("Female Incarcerated Population by State (2000-2018)")
   
-  return(chart3)
+  return(chart)
 }
 
 plot_female_pop_by_state()
@@ -130,33 +131,43 @@ plot_female_pop_by_state()
 # Your functions might go here ... <todo:  update comment>
 # See Canvas
 #----------------------------------------------------------------------------#
-
-map_df <- function() {
- df <- data %>%
- filter(year == 2018) %>%
-   group_by(state) %>%
-   summarize(prop_black_2018 = sum(black_pop_15to64, na.rm = TRUE)/ sum(total_pop, na.rm = TRUE))
- return(df)
+get_2010_female_by_states <-function(){
+  male <- filter(data, year == 2010) %>%
+    select(state, female_jail_pop, total_jail_pop) %>%
+    group_by(state) %>%
+    summarise(female_pop = sum(female_jail_pop, na.rm = TRUE),
+              total_pop = sum(total_jail_pop, na.rm = TRUE)
+    ) %>%
+    mutate(female_proportion = female_pop/ total_pop *100) %>%
+    select(state, female_proportion) %>%
+    mutate(state = tolower(abbr2state(state)))
+  return(female)
+    
 }
 
-map_df <- map_df()
-state_shape <- map_data("state")
-1map_chart <-function() {
-  p <- ggplot(state_shape) +
+
+get_mapping_data <- function(){
+  state_shape <- map_data("state") %>%
+    rename(state = region) %>%
+    left_join(get_2010_female_by_states(), by="state")
+  return(state_shape)
+}
+
+plot_2010_female_by_states <-function() {
+  plot <-ggplot(get_mapping_data()) +
     geom_polygon(
-      mapping = aes(x = long, y = lat, group = group),
-      fill = prop_black_2018,
-      color = "white",
-      size = 0.1
-      
-  )
-  
-  return(p)
-  }
-
-map_chart <- map_chart()
-
+      mapping = aes(x = long, y = lat, group = group, fill = female_proportion),
+      color = "black"
+       ) +
+    coord_map()+
+    scale_fill_continuous(low = "black", high = "white") +
+    labs(fill = "Female proportion",
+    title = "Female proportion in jail in each state in 2010"
+         )
+         return(plot)
+}
 
 ## Load data frame ---- 
+
 
 
