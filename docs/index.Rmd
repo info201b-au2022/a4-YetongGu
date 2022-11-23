@@ -46,7 +46,9 @@ plot_female_pop_by_state()
  This chart shows the Female Incarcerated Population by State is increasing from 1970 to 2018 in these five states.  CA is the states that has the fastest increasing rate at the beginning until the year 2000.
  
  
-section6:
+section6:```{r echo=FALSE}
+plot_2010_female_by_states()
+```
 
 
 
